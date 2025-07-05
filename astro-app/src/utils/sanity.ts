@@ -18,6 +18,21 @@ export async function getPost(slug: string): Promise<Post> {
   );
 }
 
+export async function getProjects(): Promise<Post[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`
+  );
+}
+
+export async function getProject(slug: string): Promise<Post> {
+  return await sanityClient.fetch(
+    groq`*[_type == "post" && slug.current == $slug][0]`,
+    {
+      slug,
+    }
+  );
+}
+
 export interface Post {
   _type: "post";
   _createdAt: string;
@@ -27,3 +42,20 @@ export interface Post {
   mainImage?: ImageAsset & { alt?: string };
   body: PortableTextBlock[];
 }
+
+export interface Project {
+  _type: "project";
+  _createdAt: string;
+  title?: string;
+  slug: Slug;
+  excerpt?: string;
+  mainImage?: ImageAsset & { alt?: string };
+  body: PortableTextBlock[];
+  demoUrl: URL;
+  authors: Author[];
+}
+
+type Author = {
+  name: string;
+  socials: Record<string, URL>[];
+};
