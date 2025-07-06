@@ -3,44 +3,19 @@ import type { ImageAsset, Slug } from "@sanity/types";
 import groq from "groq";
 import { sanityClient } from "sanity:client";
 
-export async function getPosts(): Promise<Post[]> {
+export async function getProjects(): Promise<Project[]> {
   return await sanityClient.fetch(
-    groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`,
+    groq`*[_type == "project" && defined(slug.current)] | order(_createdAt desc)`,
   );
 }
 
-export async function getPost(slug: string): Promise<Post> {
+export async function getProject(slug: string): Promise<Project> {
   return await sanityClient.fetch(
-    groq`*[_type == "post" && slug.current == $slug][0]`,
+    groq`*[_type == "project" && slug.current == $slug][0]`,
     {
       slug,
     },
   );
-}
-
-export async function getProjects(): Promise<Post[]> {
-  return await sanityClient.fetch(
-    groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`,
-  );
-}
-
-export async function getProject(slug: string): Promise<Post> {
-  return await sanityClient.fetch(
-    groq`*[_type == "post" && slug.current == $slug][0]`,
-    {
-      slug,
-    },
-  );
-}
-
-export interface Post {
-  _type: "post";
-  _createdAt: string;
-  title?: string;
-  slug: Slug;
-  excerpt?: string;
-  mainImage?: ImageAsset & { alt?: string };
-  body: PortableTextBlock[];
 }
 
 export interface Project {

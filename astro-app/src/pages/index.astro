@@ -1,18 +1,18 @@
 ---
 import Card from "../components/Card.astro";
 import Layout from "../layouts/Layout.astro";
-import { getPosts } from "../utils/sanity";
+import { getProjects } from "../utils/sanity";
 
-const posts = await getPosts();
+const projects = await getProjects();
 ---
 
-<Layout title="Posts">
+<Layout title="Projects">
   <section>
     {
-      posts.length ? (
-        posts.map((post) => <Card post={post} />)
+      projects.length ? (
+        projects.map((project) => <Card project={project} />)
       ) : (
-        <div>No Posts Found</div>
+        <div>No Projects Found</div>
       )
     }
   </section>

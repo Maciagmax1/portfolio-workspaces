@@ -4,68 +4,68 @@ import { PortableText } from "astro-portabletext";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
 import { urlFor } from "../../utils/image";
-import { getPost, getPosts } from "../../utils/sanity";
+import { getProject, getProjects } from "../../utils/sanity";
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
-  return posts.map((post) => ({
-    params: { slug: post.slug.current },
+  const projects = await getProjects();
+  return projects.map((project) => ({
+    params: { slug: project.slug.current },
   }));
 }
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 const { slug } = Astro.params as Params;
 
-const post = await getPost(slug);
+const project = await getProject(slug);
 ---
 
-<Layout title={post.title!}>
-  <section class="post">
+<Layout title={project.title!}>
+  <section class="project">
     {
-      post.mainImage ? (
+      project.mainImage ? (
         <img
-          class="post__cover"
-          src={urlFor(post.mainImage).url()}
+          class="project__cover"
+          src={urlFor(project.mainImage).url()}
           alt="Cover image"
         />
       ) : (
-        <div class="post__cover--none" />
+        <div class="project__cover--none" />
       )
     }
-    <div class="post__container">
-      <h1 class="post__title">{post.title}</h1>
-      <p class="post__excerpt">{post.excerpt}</p>
-      <p class="post__date">
-        {formatDate(post._createdAt)}
+    <div class="project__container">
+      <h1 class="project__title">{project.title}</h1>
+      <p class="project__excerpt">{project.excerpt}</p>
+      <p class="project__date">
+        {formatDate(project._createdAt)}
       </p>
-      <div class="post__content">
-        <PortableText value={post.body} />
+      <div class="project__content">
+        <PortableText value={project.body} />
       </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .post {
+  .project {
     width: 100%;
     margin: var(--space-1) 0 var(--space-4);
 
-    & .post__cover,
-    & .post__cover--none {
+    & .project__cover,
+    & .project__cover--none {
       width: 100%;
       height: 200px;
       object-fit: cover;
     }
 
-    & .post__cover--none {
+    & .project__cover--none {
       background: var(--black);
     }
 
-    & .post__container {
+    & .project__container {
       padding: 0 var(--space-3);
     }
 
-    & .post__content {
+    & .project__content {
       font-family: var(--font-family-serif);
       font-weight: 400;
       font-size: var(--font-size-4);
@@ -86,7 +86,7 @@ const post = await getPost(slug);
       }
     }
 
-    & .post__title {
+    & .project__title {
       font-family: var(--font-family-sans);
       font-size: var(--font-size-7);
       line-height: var(--line-height-6);
@@ -94,7 +94,7 @@ const post = await getPost(slug);
       font-weight: 800;
     }
 
-    & .post__excerpt {
+    & .project__excerpt {
       font-family: var(--font-family-serif);
       font-size: var(--font-size-5);
       line-height: var(--line-height-4);
@@ -102,7 +102,7 @@ const post = await getPost(slug);
       font-weight: 400;
     }
 
-    & .post__date {
+    & .project__date {
       font-family: var(--font-family-sans);
       font-weight: 600;
       font-size: var(--font-size-1);
@@ -112,34 +112,34 @@ const post = await getPost(slug);
   }
 
   @media (min-width: 800px) {
-    .post {
-      & .post__cover,
-      & .post__cover--none {
+    .project {
+      & .project__cover,
+      & .project__cover--none {
         width: 750px;
         height: 380px;
       }
 
-      & .post__title {
+      & .project__title {
         font-size: var(--font-size-10);
         line-height: var(--line-height-10);
         margin: var(--space-6) 0 0;
         letter-spacing: -0.025em;
       }
 
-      & .post__excerpt {
+      & .project__excerpt {
         font-size: var(--font-size-5);
         line-height: var(--line-height-5);
         margin-top: var(--space-3);
         margin-bottom: var(--space-3);
       }
 
-      & .post__date {
+      & .project__date {
         font-size: var(--font-size-3);
         line-height: var(--line-height-2);
         margin-top: var(--space-0);
       }
 
-      & .post__content {
+      & .project__content {
         margin-top: var(--space-7);
       }
     }
