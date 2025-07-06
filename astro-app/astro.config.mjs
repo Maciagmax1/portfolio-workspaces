@@ -15,6 +15,7 @@ const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET;
 
 import react from "@astrojs/react";
 import sanity from "@sanity/astro";
+import tailwindcss from "@tailwindcss/vite";
 
 // Change this depending on your hosting provider (Vercel, Netlify etc)
 // https://docs.astro.build/en/guides/server-side-rendering/#adding-an-adapter
@@ -36,4 +37,7 @@ export default defineConfig({
     }),
     react(), // Required for Sanity Studio
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
