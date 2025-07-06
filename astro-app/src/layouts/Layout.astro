@@ -1,5 +1,6 @@
 ---
 // https://docs.astro.build/en/guides/view-transitions/
+import Header from "@/components/Header.astro";
 import { ViewTransitions } from "astro:transitions";
 
 interface Props {
@@ -29,9 +30,7 @@ const { title } = Astro.props;
   </head>
   <body>
     <div class="container">
-      <header class="header">
-        <a class="header__title" href="/">Home</a>
-      </header>
+      <Header />
       <main>
         <slot />
       </main>
