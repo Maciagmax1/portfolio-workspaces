@@ -8,6 +8,12 @@ const posts = await getPosts();
 
 <Layout title="Posts">
   <section>
-    {posts.length ? posts.map((post) => <Card post={post} />) : <div>No Posts Found</div>}
+    {
+      posts.length ? (
+        posts.map((post) => <Card post={post} />)
+      ) : (
+        <div>No Posts Found</div>
+      )
+    }
   </section>
 </Layout>
