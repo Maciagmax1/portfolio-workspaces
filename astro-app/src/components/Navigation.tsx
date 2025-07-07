@@ -1,6 +1,3 @@
-"use client";
-
-import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react";
 import * as React from "react";
 
 import {
@@ -13,41 +10,37 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
+// move this to sanity studio
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+    title: "JavaScript",
+    href: "/skills/javascript",
+    description: "The foundation for frontend development",
   },
   {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
+    title: "Cascading Style Sheets",
+    href: "/skills/css",
+    description: "A web developers paint brush",
   },
   {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+    title: "React",
+    href: "/skills/react",
+    description: "Simplified development interacting with the virtual DOM",
   },
   {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
+    title: "NextJS",
+    href: "/skills/nextjs",
+    description: "Serverside HTML prerendering",
   },
   {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+    title: "Astro",
+    href: "skils/astro",
+    description: "Lightweight and campatible",
   },
   {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+    title: "HTML",
+    href: "/skills/html",
+    description: "The DOM and the skeleton for the web",
   },
 ];
 
@@ -56,38 +49,50 @@ export function Navigation() {
     <NavigationMenu viewport={false}>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Home</NavigationMenuTrigger>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <a href="/">Home</a>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <a href="/about-me">About Me</a>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Background</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-3">
+            <ul className="grid w-[300px] gap-4">
+              <li>
                 <NavigationMenuLink asChild>
-                  <a
-                    className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
-                    href="/"
-                  >
-                    <div className="mt-4 mb-2 text-lg font-medium">
-                      shadcn/ui
+                  <a href="#">
+                    <div className="font-medium">Experience</div>
+                    <div className="text-muted-foreground">
+                      Visit my previous roles
                     </div>
-                    <p className="text-muted-foreground text-sm leading-tight">
-                      Beautifully designed components built with Tailwind CSS.
-                    </p>
+                  </a>
+                </NavigationMenuLink>
+                <NavigationMenuLink asChild>
+                  <a href="#">
+                    <div className="font-medium">Projects</div>
+                    <div className="text-muted-foreground">
+                      Browse some of my work
+                    </div>
+                  </a>
+                </NavigationMenuLink>
+                <NavigationMenuLink asChild>
+                  <a href="#">
+                    <div className="font-medium">Recommendations</div>
+                    <div className="text-muted-foreground">
+                      Read what others say
+                    </div>
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
-              </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
-              </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
-              </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Skills</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               {components.map((component) => (
@@ -102,88 +107,11 @@ export function Navigation() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
+
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <a href="/docs">Docs</a>
+            <a href="#">Contact</a>
           </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>List</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[300px] gap-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <a href="#">
-                    <div className="font-medium">Components</div>
-                    <div className="text-muted-foreground">
-                      Browse all components in the library.
-                    </div>
-                  </a>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <a href="#">
-                    <div className="font-medium">Documentation</div>
-                    <div className="text-muted-foreground">
-                      Learn how to use the library.
-                    </div>
-                  </a>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <a href="#">
-                    <div className="font-medium">Blog</div>
-                    <div className="text-muted-foreground">
-                      Read our latest blog posts.
-                    </div>
-                  </a>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Simple</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[200px] gap-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <a href="#">Components</a>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <a href="#">Documentation</a>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <a href="#">Blocks</a>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>With Icon</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[200px] gap-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <a href="#" className="flex-row items-center gap-2">
-                    <CircleHelpIcon />
-                    Backlog
-                  </a>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <a href="#" className="flex-row items-center gap-2">
-                    <CircleIcon />
-                    To Do
-                  </a>
-                </NavigationMenuLink>
-                <NavigationMenuLink asChild>
-                  <a href="#" className="flex-row items-center gap-2">
-                    <CircleCheckIcon />
-                    Done
-                  </a>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
