@@ -1,5 +1,4 @@
 ---
-import type { InferGetStaticParamsType } from "astro";
 import { PortableText } from "astro-portabletext";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
@@ -8,15 +7,14 @@ import { getProject, getProjects } from "../../utils/sanity";
 
 export async function getStaticPaths() {
   const projects = await getProjects();
+  console.log("Projects:", projects);
   return projects.map((project) => ({
     params: { slug: project.slug.current },
+    props: { project },
   }));
 }
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
-const { slug } = Astro.params as Params;
-
-const project = await getProject(slug);
+const { project } = Astro.props;
 ---
 
 <Layout title={project.title!}>
