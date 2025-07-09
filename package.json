@@ -2,6 +2,8 @@
   "name": "portfolio",
   "description": "Minimal Astro site with Sanity Studio",
   "scripts": {
+    "app-build": "npm run build --workspace=astro-app",
+    "studio-build": "npm run build --workspace=studio",
     "dev": "concurrently \"npm run dev --workspace=astro-app\" \"npm run dev --workspace=studio\""
   },
   "keywords": [
