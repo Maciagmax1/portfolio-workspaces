@@ -8,7 +8,6 @@
     "app:dev": "pnpm --filter=./astro-app run dev",
     "dev": "concurrently \"pnpm --filter=./astro-app run dev\" \"pnpm --filter=./studio run dev\"",
     "lint": "npx eslint .",
-    "prepare": "husky install",
     "prettier": "npx prettier --write .",
     "studio:build": "pnpm --filter=./studio run build",
     "studio:deploy": "cd studio & npx sanity deploy",
@@ -27,7 +26,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-packagejson": "^2.5.18",
-    "typescript": "^4.9.5"
+    "typescript": "^5.7.2"
   },
   "packageManager": "pnpm@10.13.1",
   "engines": {
