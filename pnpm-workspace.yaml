@@ -2,6 +2,6 @@ packages:
   - "astro-app"
   - "studio"
 catalog:
-  react: ^19.0.0
-  react-dom: ^19.0.0
+  react: ^18.0.0
+  react-dom: ^18.0.0
   sanity: ^3.76.1
