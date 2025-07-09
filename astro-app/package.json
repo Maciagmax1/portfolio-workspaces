@@ -1,13 +1,13 @@
 {
   "name": "app",
-  "type": "module",
   "version": "0.0.1",
+  "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "astro": "astro",
     "build": "astro check && tsc --noEmit && astro build",
+    "dev": "astro dev",
     "preview": "astro preview",
-    "astro": "astro"
+    "start": "astro dev"
   },
   "dependencies": {
     "@astrojs/check": "0.7.0",
@@ -29,9 +29,9 @@
     "groq": "3.48.1",
     "lucide-react": "^0.525.0",
     "prettier-plugin-astro": "0.14.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "sanity": "^3.76.1",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "sanity": "catalog:",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.11"
   },

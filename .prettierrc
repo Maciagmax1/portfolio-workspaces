@@ -1,5 +1,9 @@
 {
-  "plugins": ["prettier-plugin-astro", "prettier-plugin-organize-imports"],
+  "plugins": [
+    "prettier-plugin-astro",
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-packagejson"
+  ],
   "overrides": [
     {
       "files": "*.astro",

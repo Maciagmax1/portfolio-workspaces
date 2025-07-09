@@ -3,11 +3,10 @@ import { PortableText } from "astro-portabletext";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
 import { urlFor } from "../../utils/image";
-import { getProject, getProjects } from "../../utils/sanity";
+import { getProjects } from "../../utils/sanity";
 
 export async function getStaticPaths() {
   const projects = await getProjects();
-  console.log("Projects:", projects);
   return projects.map((project) => ({
     params: { slug: project.slug.current },
     props: { project },

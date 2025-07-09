@@ -1,31 +1,26 @@
 {
   "name": "portfolio",
   "description": "Minimal Astro site with Sanity Studio",
+  "homepage": "https://max-maciag.sanity.studio",
+  "type": "module",
   "scripts": {
-    "app-build": "npm run build --workspace=astro-app",
-    "studio-build": "npm run build --workspace=studio",
-    "dev": "concurrently \"npm run dev --workspace=astro-app\" \"npm run dev --workspace=studio\""
+    "app:build": "pnpm --filter=./astro-app run build",
+    "app:dev": "concurrently \"pnpm --filter=./astro-app run dev\" \"pnpm --filter=./studio run dev\"",
+    "dev": "concurrently \"pnpm --filter=./astro-app run dev\" \"pnpm --filter=./studio run dev\"",
+    "studio:build": "pnpm --filter=./studio run build",
+    "studio:deploy": "cd studio & npx sanity deploy",
+    "studio:dev": "concurrently \"pnpm --filter=./astro-app run dev\" \"pnpm --filter=./studio run dev\""
   },
-  "keywords": [
-    "Sanity",
-    "Astro",
-    "Headless CMS",
-    "Visual Editing",
-    "Live Content API (LCAPI)",
-    "Real-time"
-  ],
-  "bugs": {
-    "url": "https://github.com/sanity-io/sanity-template-astro-clean/issues"
-  },
-  "homepage": "https://github.com/sanity-io/sanity-template-astro-clean#readme",
-  "workspaces": [
-    "studio",
-    "astro-app"
-  ],
   "devDependencies": {
     "concurrently": "^9.1.0",
+    "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-organize-imports": "^4.1.0"
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-packagejson": "^2.5.18"
   },
-  "type": "module"
+  "packageManager": "pnpm@10.13.1",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=10.0.0"
+  }
 }
