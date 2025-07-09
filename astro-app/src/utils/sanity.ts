@@ -18,6 +18,15 @@ export async function getProject(slug: string): Promise<Project> {
   );
 }
 
+export async function getNav(name: string): Promise<NavContent> {
+  return await sanityClient.fetch(
+    groq`*[_type == "navigation" && title == $name][0]`,
+    {
+      name,
+    },
+  );
+}
+
 export interface Project {
   _type: "project";
   _createdAt: string;
@@ -28,6 +37,21 @@ export interface Project {
   body: PortableTextBlock[];
   demoUrl: URL;
   authors: Author[];
+}
+
+export interface NavContent {
+  _type: "navigation";
+  title: string;
+  navigationItems: {
+    label: string;
+    url: string;
+    children?: {
+      label: string;
+      description: string;
+      icon?: ImageAsset;
+      url: string;
+    }[];
+  }[];
 }
 
 type Author = {

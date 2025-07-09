@@ -1,13 +1,15 @@
 ---
+import { getNav } from "@/utils/sanity";
 import "../styles/global.css";
 import { Navigation } from "./Navigation";
 type Props = {};
 
+const navContent = await getNav("Main Navigation");
 const {} = Astro.props;
 ---
 
 <header class="p-4 flex justify-end">
-  <Navigation client:visible />
+  <Navigation navigationContent={navContent} client:visible />
 </header>
 
 <style></style>

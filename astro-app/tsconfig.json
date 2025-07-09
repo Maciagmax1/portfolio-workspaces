@@ -20,5 +20,5 @@
     }
   },
   "includes": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", ".vercel"]
+  "exclude": ["node_modules", "dist"]
 }
