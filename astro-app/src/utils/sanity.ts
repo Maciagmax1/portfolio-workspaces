@@ -3,6 +3,10 @@ import type { ImageAsset, Slug } from "@sanity/types";
 import groq from "groq";
 import { sanityClient } from "sanity:client";
 
+export const keyDocuments = {
+  MAIN_NAV: "Main Navigation",
+}
+
 export async function getProjects(): Promise<Project[]> {
   return await sanityClient.fetch(
     groq`*[_type == "project" && defined(slug.current)] | order(_createdAt desc)`,
@@ -18,7 +22,7 @@ export async function getProject(slug: string): Promise<Project> {
   );
 }
 
-export async function getNav(name: string): Promise<NavContent> {
+export async function getNav(name: string): Promise<NavContent | null> {
   return await sanityClient.fetch(
     groq`*[_type == "navigation" && title == $name][0]`,
     {

@@ -1,10 +1,10 @@
 ---
-import { getNav } from "@/utils/sanity";
+import { getNav, keyDocuments } from "@/utils/sanity";
 import "../styles/global.css";
 import { Navigation } from "./Navigation";
 type Props = {};
 
-const navContent = await getNav("Main Navigation");
+const navContent = await getNav(keyDocuments.MAIN_NAV);
 const {} = Astro.props;
 ---
 

@@ -16,7 +16,7 @@ export function Navigation({
   menuItemClassName = "",
   menuContentClassName = "w-[500px] p-4 grid gap-2 grid-cols-2",
 }: {
-  navigationContent: NavContent;
+  navigationContent: NavContent | null;
   menuItemClassName?: string;
   menuContentClassName?: string;
 }) {
