@@ -10,6 +10,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { type NavContent } from "@/utils/sanity";
+import { ModeToggle } from "./ModeToggle";
 
 export function Navigation({
   navigationContent,
@@ -20,7 +21,6 @@ export function Navigation({
   menuItemClassName?: string;
   menuContentClassName?: string;
 }) {
-
   return (
     <NavigationMenu viewport={false}>
       <NavigationMenuList>
@@ -56,6 +56,7 @@ export function Navigation({
             </NavigationMenuItem>
           ),
         )}
+        <ModeToggle />
       </NavigationMenuList>
     </NavigationMenu>
   );
@@ -66,17 +67,13 @@ function ListItem({
   children,
   href,
   ...props
-}: React.ComponentProps<"li"> & { href: string }) {
+}: React.ComponentProps & { href: string }) {
   return (
     <li {...props}>
       <NavigationMenuLink asChild>
         <a href={href}>
-          <div className="text-sm leading-none font-medium">
-            {title}
-          </div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-            {children}
-          </p>
+          <div className="text-sm leading-none font-semibold">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug">{children}</p>
         </a>
       </NavigationMenuLink>
     </li>
