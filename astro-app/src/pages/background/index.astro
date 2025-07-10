@@ -1,0 +1,20 @@
+---
+import Card from "@/components/Card.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getProjects } from "@/utils/sanity";
+
+const projects = await getProjects();
+
+---
+
+<Layout title="Background">
+  <section id="projects">
+    {
+      projects.length ? (
+        projects.map((project) => <Card project={project} />)
+      ) : (
+        <div>No Projects Found</div>
+      )
+    }
+  </section>
+</Layout>
