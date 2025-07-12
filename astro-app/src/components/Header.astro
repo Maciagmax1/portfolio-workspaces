@@ -2,13 +2,12 @@
 import { getNav, keyDocuments } from "@/utils/sanity";
 import "../styles/global.css";
 import { Navigation } from "./Navigation";
-import { ModeToggle } from "./ModeToggle";
 type Props = {};
 
 const navContent = await getNav(keyDocuments.MAIN_NAV);
 const {} = Astro.props;
 ---
 
-<header class="p-4 flex justify-end">
-  <Navigation navigationContent={navContent} client:visible />
+<header class="flex justify-end p-4">
+  <Navigation navigationContent={navContent} client:only />
 </header>

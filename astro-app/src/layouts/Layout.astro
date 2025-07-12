@@ -26,33 +26,19 @@ const { title } = Astro.props;
     <title>{title}</title>
     <ViewTransitions />
     <script is:inline>
-      const getThemePreference = () => {
-        if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem("theme")
-        ) {
-          return localStorage.getItem("theme");
-        }
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-      };
-      const isDark = getThemePreference() === "dark";
-      document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-
-      if (typeof localStorage !== "undefined") {
-        const observer = new MutationObserver(() => {
-          const isDark = document.documentElement.classList.contains("dark");
-          localStorage.setItem("theme", isDark ? "dark" : "light");
-        });
-        observer.observe(document.documentElement, {
-          attributes: true,
-          attributeFilter: ["class"],
-        });
+      const theme = localStorage.getItem("theme") || "system";
+      if (
+        theme === "dark" ||
+        (theme === "system" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
       }
     </script>
   </head>
-  <body class="h-lvh var(--background)">
+  <body class="var(--background) h-lvh">
     <Header />
     <div class="container">
       <main>
@@ -190,8 +176,8 @@ const { title } = Astro.props;
       }
 
       html {
-        font-family: var(--font-family-sans), var(--font-family-serif),
-          sans-serif;
+        font-family:
+          var(--font-family-sans), var(--font-family-serif), sans-serif;
         text-size-adjust: 100%;
       }
 

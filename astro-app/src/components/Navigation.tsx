@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,12 +12,12 @@ import { ModeToggle } from "./ModeToggle";
 
 export function Navigation({
   navigationContent,
-  menuItemClassName = "",
-  menuContentClassName = "w-[500px] p-4 grid gap-2 grid-cols-2",
+  menuItemClasses = "",
+  menuContentClasses = "w-[500px] p-4 grid gap-2 grid-cols-2",
 }: {
   navigationContent: NavContent | null;
-  menuItemClassName?: string;
-  menuContentClassName?: string;
+  menuItemClasses?: string;
+  menuContentClasses?: string;
 }) {
   return (
     <NavigationMenu viewport={false}>
@@ -31,7 +29,7 @@ export function Navigation({
                 asChild
                 className={navigationMenuTriggerStyle()}
               >
-                <a href={item.url} className={menuItemClassName}>
+                <a href={item.url} className={menuItemClasses}>
                   {item.label}
                 </a>
               </NavigationMenuLink>
@@ -40,13 +38,13 @@ export function Navigation({
             <NavigationMenuItem key={item.label}>
               <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className={menuContentClassName}>
+                <ul className={menuContentClasses}>
                   {item.children.map((child) => (
                     <ListItem
                       key={child.label}
                       title={child.label}
                       href={child.url}
-                      className={menuItemClassName}
+                      className={menuItemClasses}
                     >
                       {child.description}
                     </ListItem>
@@ -67,7 +65,7 @@ function ListItem({
   children,
   href,
   ...props
-}: React.ComponentProps & { href: string }) {
+}: React.ComponentProps<"li"> & { href: string }) {
   return (
     <li {...props}>
       <NavigationMenuLink asChild>
