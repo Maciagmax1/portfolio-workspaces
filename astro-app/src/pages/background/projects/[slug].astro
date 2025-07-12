@@ -1,9 +1,9 @@
 ---
 import { PortableText } from "astro-portabletext";
-import Layout from "../../layouts/Layout.astro";
-import { formatDate } from "../../utils";
-import { urlFor } from "../../utils/image";
-import { getProjects } from "../../utils/sanity";
+import Layout from "../../../layouts/Layout.astro";
+import { formatDate } from "../../../utils";
+import { urlFor } from "../../../utils/image";
+import { getProjects } from "../../../utils/sanity";
 
 export async function getStaticPaths() {
   const projects = await getProjects();

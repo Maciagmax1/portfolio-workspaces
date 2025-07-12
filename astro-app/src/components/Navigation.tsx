@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,17 +8,17 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { type NavContent } from "@/utils/sanity";
+import { ModeToggle } from "./ModeToggle";
 
 export function Navigation({
   navigationContent,
-  menuItemClassName = "",
-  menuContentClassName = "w-[500px] p-4 grid gap-2 grid-cols-2",
+  menuItemClasses = "",
+  menuContentClasses = "w-[500px] p-4 grid gap-2 grid-cols-2",
 }: {
   navigationContent: NavContent | null;
-  menuItemClassName?: string;
-  menuContentClassName?: string;
+  menuItemClasses?: string;
+  menuContentClasses?: string;
 }) {
-
   return (
     <NavigationMenu viewport={false}>
       <NavigationMenuList>
@@ -31,7 +29,7 @@ export function Navigation({
                 asChild
                 className={navigationMenuTriggerStyle()}
               >
-                <a href={item.url} className={menuItemClassName}>
+                <a href={item.url} className={menuItemClasses}>
                   {item.label}
                 </a>
               </NavigationMenuLink>
@@ -40,13 +38,13 @@ export function Navigation({
             <NavigationMenuItem key={item.label}>
               <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className={menuContentClassName}>
+                <ul className={menuContentClasses}>
                   {item.children.map((child) => (
                     <ListItem
                       key={child.label}
                       title={child.label}
                       href={child.url}
-                      className={menuItemClassName}
+                      className={menuItemClasses}
                     >
                       {child.description}
                     </ListItem>
@@ -56,6 +54,7 @@ export function Navigation({
             </NavigationMenuItem>
           ),
         )}
+        <ModeToggle />
       </NavigationMenuList>
     </NavigationMenu>
   );
@@ -71,12 +70,8 @@ function ListItem({
     <li {...props}>
       <NavigationMenuLink asChild>
         <a href={href}>
-          <div className="text-sm leading-none font-medium">
-            {title}
-          </div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-            {children}
-          </p>
+          <div className="text-sm leading-none font-semibold">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug">{children}</p>
         </a>
       </NavigationMenuLink>
     </li>
