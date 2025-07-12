@@ -8,7 +8,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { type NavContent } from "@/utils/sanity";
-import { ModeToggle } from "./ModeToggle";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Navigation({
   navigationContent,
@@ -20,8 +20,8 @@ export function Navigation({
   menuContentClasses?: string;
 }) {
   return (
-    <NavigationMenu viewport={false}>
-      <NavigationMenuList>
+    <NavigationMenu viewport={true} className="hidden sm:block">
+      <NavigationMenuList className="flex gap-4">
         {navigationContent?.navigationItems?.map((item) =>
           !item.children || item.children.length === 0 ? (
             <NavigationMenuItem key={item.label}>
@@ -54,7 +54,7 @@ export function Navigation({
             </NavigationMenuItem>
           ),
         )}
-        <ModeToggle />
+        <ThemeToggle />
       </NavigationMenuList>
     </NavigationMenu>
   );
