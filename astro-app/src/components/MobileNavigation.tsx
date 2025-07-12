@@ -1,9 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import type { NavContent } from "@/utils/sanity";
-import { Menu as MenuIcon } from "lucide-react";
+import { ChevronDown, Menu as MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./ui/collapsible";
 
 export function MobileNavigation({
   navigationContent,
@@ -20,38 +25,55 @@ export function MobileNavigation({
         </Button>
       </SheetTrigger>
       <SheetContent
-        side="bottom"
-        className="h-10/12"
+        side="left"
+        className="h-full"
         renderTools={<ThemeToggle className="w-fit sm:hidden" />}
       >
         <nav className="flex w-full flex-col items-start">
-          {navigationContent?.navigationItems?.map((item) => (
-            <div key={item.label || item.url} className="w-full">
-              <Button
-                variant="link"
-                asChild
-                className="w-full justify-start"
-                onClick={() => setOpen(false)}
-              >
-                <a href={item.url}>{item.label}</a>
-              </Button>
-              {item.children && item.children.length > 0 && (
-                <div className="ml-4 flex flex-col">
-                  {item.children.map((child) => (
-                    <Button
-                      key={child.label || child.url}
-                      variant="link"
-                      asChild
-                      className="w-full justify-start"
-                      onClick={() => setOpen(false)}
-                    >
-                      <a href={child.url}>{child.label}</a>
-                    </Button>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+          {navigationContent?.navigationItems?.map((item) => {
+            const hasChildren = item.children && item.children.length > 0;
+            return (
+              <div key={item.label || item.url} className="w-full">
+                {hasChildren ? (
+                  <Collapsible>
+                    <CollapsibleTrigger asChild>
+                      <Button
+                        variant="link"
+                        className="text-foreground w-fit justify-start text-lg font-bold"
+                      >
+                        {item.label}
+                        <ChevronDown />
+                      </Button>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="ml-4 flex flex-col">
+                        {item.children?.map((child) => (
+                          <Button
+                            key={child.label || child.url}
+                            variant="link"
+                            asChild
+                            className="text-foreground w-fit justify-start"
+                            onClick={() => setOpen(false)}
+                          >
+                            <a href={child.url}>{child.label}</a>
+                          </Button>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                ) : (
+                  <Button
+                    variant="link"
+                    asChild
+                    className="text-foreground w-fit justify-start text-lg font-bold"
+                    onClick={() => setOpen(false)}
+                  >
+                    <a href={item.url}>{item.label}</a>
+                  </Button>
+                )}
+              </div>
+            );
+          })}
         </nav>
       </SheetContent>
     </Sheet>
