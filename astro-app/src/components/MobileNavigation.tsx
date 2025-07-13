@@ -108,7 +108,9 @@ export function MobileNavigation({
             );
           })}
         </nav>
-        <SheetDescription aria-describedby="Mobile Navigation" />
+        <SheetDescription className="sr-only">
+          Contains the main navigation links for the site.
+        </SheetDescription>
       </SheetContent>
     </Sheet>
   );

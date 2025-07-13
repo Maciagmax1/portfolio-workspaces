@@ -33,7 +33,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     <DropdownMenu>
       <DropdownMenuTrigger
         className={cn(
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:cursor-pointe flex size-9 items-center justify-center rounded-sm p-2 shadow-none outline-none hover:cursor-pointer focus-visible:ring-0 focus-visible:ring-offset-0",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 flex size-9 items-center justify-center rounded-sm p-2 shadow-none outline-none hover:cursor-pointer focus-visible:ring-0 focus-visible:ring-offset-0",
           className,
         )}
       >
