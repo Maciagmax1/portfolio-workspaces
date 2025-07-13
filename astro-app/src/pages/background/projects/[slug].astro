@@ -1,9 +1,10 @@
 ---
 import { PortableText } from "astro-portabletext";
-import Layout from "../../../layouts/Layout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { formatDate } from "../../../utils";
 import { urlFor } from "../../../utils/image";
 import { getProjects } from "../../../utils/sanity";
+import { fade } from "astro:transitions";
 
 export async function getStaticPaths() {
   const projects = await getProjects();
@@ -16,8 +17,8 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 ---
 
-<Layout title={project.title!}>
-  <section class="project">
+<BaseLayout title={project.title!}>
+  <section class="project" transition:animate={fade({ duration: ".5s" })}>
     {
       project.mainImage ? (
         <img
@@ -40,7 +41,7 @@ const { project } = Astro.props;
       </div>
     </div>
   </section>
-</Layout>
+</BaseLayout>
 
 <style>
   .project {

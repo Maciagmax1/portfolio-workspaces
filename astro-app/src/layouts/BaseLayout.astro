@@ -1,0 +1,23 @@
+---
+// https://docs.astro.build/en/guides/view-transitions/
+import Header from "@/components/Header.astro";
+import Head from "@/Head.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <Head title={title} />
+  <body class="var(--background) h-lvh">
+    <Header />
+    <main class="mx-auto">
+      <slot />
+    </main>
+    <footer class="footer"></footer>
+  </body>
+</html>

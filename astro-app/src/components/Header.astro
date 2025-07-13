@@ -2,6 +2,8 @@
 import { getNav, keyDocuments } from "@/utils/sanity";
 import "../styles/global.css";
 import { Navigation } from "./Navigation";
+import { MobileNavigation } from "./MobileNavigation";
+import { slide } from "astro:transitions";
 type Props = {};
 
 const navContent = await getNav(keyDocuments.MAIN_NAV);
@@ -9,5 +11,6 @@ const {} = Astro.props;
 ---
 
 <header class="flex justify-end p-4">
-  <Navigation navigationContent={navContent} client:only />
+  <Navigation client:only="react" navigationContent={navContent} />
+  <MobileNavigation client:only="react" navigationContent={navContent} />
 </header>
