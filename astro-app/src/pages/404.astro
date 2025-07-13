@@ -1,11 +1,11 @@
 ---
 import { Button } from "@/components/ui/button";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { slide } from "astro:transitions";
+import { fade } from "astro:transitions";
 ---
 
 <BaseLayout title="404 - Not Found">
-  <section transition:animate={slide({ duration: ".5s" })}>
+  <section transition:animate={fade({ duration: ".5s" })}>
     <h1>Page Not Found</h1>
     <a href="/">
       <Button variant="default" size="default">Home</Button>

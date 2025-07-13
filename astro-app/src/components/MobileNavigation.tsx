@@ -1,7 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import type { NavContent } from "@/utils/sanity";
+import { DialogTitle } from "@radix-ui/react-dialog";
 import { ChevronDown, Menu as MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
@@ -28,6 +34,7 @@ export function MobileNavigation({
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
+      <DialogTitle className="sr-only">Mobile Navigation</DialogTitle>
       <SheetTrigger asChild>
         <Button variant="secondary" size="icon" className="sm:hidden">
           <MenuIcon />
@@ -101,6 +108,9 @@ export function MobileNavigation({
             );
           })}
         </nav>
+        <SheetDescription className="sr-only">
+          Contains the main navigation links for the site.
+        </SheetDescription>
       </SheetContent>
     </Sheet>
   );

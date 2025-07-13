@@ -15,9 +15,8 @@ const { title } = Astro.props;
   <Head title={title} />
   <body class="var(--background) h-lvh">
     <Header />
-    <main class="mx-auto">
+    <main class="px-8 sm:container sm:mx-auto">
       <slot />
     </main>
-    <footer class="footer"></footer>
   </body>
 </html>
