@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { Moon, Sun } from "lucide-react";
-import { Button } from "./ui/button";
 
 type ThemeMode = "light" | "dark" | "system";
 const themeModes: ThemeMode[] = ["light", "dark", "system"];
@@ -34,19 +33,13 @@ export function ThemeToggle({ className }: { className?: string }) {
     <DropdownMenu>
       <DropdownMenuTrigger
         className={cn(
-          "outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:cursor-pointe flex size-9 items-center justify-center rounded-sm p-2 shadow-none outline-none hover:cursor-pointer focus-visible:ring-0 focus-visible:ring-offset-0",
           className,
         )}
       >
-        <Button
-          variant="secondary"
-          className="shadow-none outline-none hover:cursor-pointer focus-visible:ring-0 focus-visible:ring-offset-0"
-          size="icon"
-        >
-          <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
+        <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+        <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+        <span className="sr-only">Toggle theme</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="flex flex-col gap-1">
         {themeModes.map((mode) => (
