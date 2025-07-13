@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 import type { NavContent } from "@/utils/sanity";
 import { ChevronDown, Menu as MenuIcon } from "lucide-react";
 import { useState } from "react";
@@ -9,6 +10,14 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "./ui/collapsible";
+
+const matchedPathStyles = (url: string) => {
+  const currentPath = window.location.pathname + window.location.search;
+  if (url === "/") {
+    return currentPath === "/" ? " text-primary" : " text-foreground";
+  }
+  return currentPath.includes(url) ? " text-primary" : " text-foreground";
+};
 
 export function MobileNavigation({
   navigationContent,
@@ -26,10 +35,10 @@ export function MobileNavigation({
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="h-full"
+        className="h-full w-[calc(100%-4px)]"
         renderTools={<ThemeToggle className="w-fit sm:hidden" />}
       >
-        <nav className="flex w-full flex-col items-start">
+        <nav className="flex w-full flex-col items-start p-4 [&_a]:p-0 [&_button]:p-0 [&_button]:hover:cursor-pointer">
           {navigationContent?.navigationItems?.map((item) => {
             const hasChildren = item.children && item.children.length > 0;
             return (
@@ -39,23 +48,35 @@ export function MobileNavigation({
                     <CollapsibleTrigger asChild>
                       <Button
                         variant="link"
-                        className="text-foreground w-fit justify-start text-lg font-bold"
+                        className={
+                          "w-fit justify-start text-lg font-bold" +
+                          matchedPathStyles(item.url)
+                        }
                       >
                         {item.label}
                         <ChevronDown />
                       </Button>
                     </CollapsibleTrigger>
-                    <CollapsibleContent>
+                    <CollapsibleContent
+                      className={cn(
+                        "text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 outline-none",
+                      )}
+                    >
                       <div className="ml-4 flex flex-col">
                         {item.children?.map((child) => (
                           <Button
                             key={child.label || child.url}
                             variant="link"
                             asChild
-                            className="text-foreground w-fit justify-start"
+                            className={
+                              "w-fit justify-start" +
+                              matchedPathStyles(child.url)
+                            }
                             onClick={() => setOpen(false)}
                           >
-                            <a href={child.url}>{child.label}</a>
+                            <a className="p-0" href={child.url}>
+                              {child.label}
+                            </a>
                           </Button>
                         ))}
                       </div>
@@ -65,10 +86,15 @@ export function MobileNavigation({
                   <Button
                     variant="link"
                     asChild
-                    className="text-foreground w-fit justify-start text-lg font-bold"
+                    className={
+                      "w-fit justify-start text-lg font-bold" +
+                      matchedPathStyles(item.url)
+                    }
                     onClick={() => setOpen(false)}
                   >
-                    <a href={item.url}>{item.label}</a>
+                    <a className="p-0" href={item.url}>
+                      {item.label}
+                    </a>
                   </Button>
                 )}
               </div>

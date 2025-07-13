@@ -1,7 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import { slide } from "astro:transitions";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<Layout title="Home">
-  <section>Welcome to the home page</section>
-</Layout>
+<BaseLayout title="Home">
+  <section transition:animate={slide({ duration: ".5s" })}>
+    <h1>Welcome to the home page</h1>
+  </section>
+</BaseLayout>

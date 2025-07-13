@@ -1,14 +1,14 @@
 ---
 import Card from "@/components/Card.astro";
-import Layout from "@/layouts/Layout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getProjects } from "@/utils/sanity";
+import { slide } from "astro:transitions";
 
 const projects = await getProjects();
-
 ---
 
-<Layout title="Background">
-  <section id="projects">
+<BaseLayout title="Background">
+  <section id="projects" transition:animate={slide({ duration: ".5s" })}>
     {
       projects.length ? (
         projects.map((project) => <Card project={project} />)
@@ -17,4 +17,4 @@ const projects = await getProjects();
       )
     }
   </section>
-</Layout>
+</BaseLayout>

@@ -10,10 +10,7 @@ const navContent = await getNav(keyDocuments.MAIN_NAV);
 const {} = Astro.props;
 ---
 
-<header
-  class="flex justify-end p-4"
-  transition:animate={slide({ duration: ".9s" })}
->
-  <Navigation client:only navigationContent={navContent} />
-  <MobileNavigation client:only navigationContent={navContent} />
+<header class="flex justify-end p-4">
+  <Navigation client:only="react" navigationContent={navContent} />
+  <MobileNavigation client:only="react" navigationContent={navContent} />
 </header>

@@ -1,9 +1,13 @@
 ---
 import { Button } from "@/components/ui/button";
-import Layout from "../layouts/Layout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { slide } from "astro:transitions";
 ---
 
-<Layout title="404 - Not Found">
-  <section>This page has been moved</section>
-  <a href="/"><Button variant="default" size="default">Home</Button></a>
-</Layout>
+<BaseLayout title="404 - Not Found">
+  <section transition:animate={slide({ duration: ".5s" })}>
+    <h1>Page Not Found</h1><a href="/"
+      ><Button variant="default" size="default">Home</Button></a
+    >
+  </section>
+</BaseLayout>
