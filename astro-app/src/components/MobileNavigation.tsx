@@ -48,10 +48,10 @@ export function MobileNavigation({
                     <CollapsibleTrigger asChild>
                       <Button
                         variant="link"
-                        className={
-                          "w-fit justify-start text-lg font-bold" +
-                          matchedPathStyles(item.url)
-                        }
+                        className={cn(
+                          "w-fit justify-start text-lg font-bold",
+                          matchedPathStyles(item.url),
+                        )}
                       >
                         {item.label}
                         <ChevronDown />
@@ -68,10 +68,10 @@ export function MobileNavigation({
                             key={child.label || child.url}
                             variant="link"
                             asChild
-                            className={
-                              "w-fit justify-start" +
-                              matchedPathStyles(child.url)
-                            }
+                            className={cn(
+                              "w-fit justify-start",
+                              matchedPathStyles(child.url),
+                            )}
                             onClick={() => setOpen(false)}
                           >
                             <a className="p-0" href={child.url}>
@@ -86,10 +86,10 @@ export function MobileNavigation({
                   <Button
                     variant="link"
                     asChild
-                    className={
-                      "w-fit justify-start text-lg font-bold" +
-                      matchedPathStyles(item.url)
-                    }
+                    className={cn(
+                      "w-fit justify-start text-lg font-bold",
+                      matchedPathStyles(item.url),
+                    )}
                     onClick={() => setOpen(false)}
                   >
                     <a className="p-0" href={item.url}>

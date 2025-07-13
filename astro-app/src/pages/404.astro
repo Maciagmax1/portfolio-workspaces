@@ -6,8 +6,9 @@ import { slide } from "astro:transitions";
 
 <BaseLayout title="404 - Not Found">
   <section transition:animate={slide({ duration: ".5s" })}>
-    <h1>Page Not Found</h1><a href="/"
-      ><Button variant="default" size="default">Home</Button></a
-    >
+    <h1>Page Not Found</h1>
+    <a href="/">
+      <Button variant="default" size="default">Home</Button>
+    </a>
   </section>
 </BaseLayout>

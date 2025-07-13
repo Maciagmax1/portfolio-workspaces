@@ -6,6 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -32,7 +33,10 @@ export function ThemeToggle({ className }: { className?: string }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        className={`outline-none focus-visible:ring-0 focus-visible:ring-offset-0 ${className}`}
+        className={cn(
+          "outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
+          className,
+        )}
       >
         <Button
           variant="secondary"
