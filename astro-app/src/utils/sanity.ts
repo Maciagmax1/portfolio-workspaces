@@ -5,7 +5,7 @@ import { sanityClient } from "sanity:client";
 
 export const keyDocuments = {
   MAIN_NAV: "Main Navigation",
-}
+};
 
 export async function getProjects(): Promise<Project[]> {
   return await sanityClient.fetch(
@@ -25,6 +25,23 @@ export async function getProject(slug: string): Promise<Project> {
 export async function getNav(name: string): Promise<NavContent | null> {
   return await sanityClient.fetch(
     groq`*[_type == "navigation" && title == $name][0]`,
+    {
+      name,
+    },
+  );
+}
+
+export async function getLandingPage(
+  name: string,
+): Promise<LandingPage | null> {
+  return await sanityClient.fetch(
+    groq`*[_type == "landingPage" && title == $name][0]{
+      ...,
+      mainImage{
+        ...,
+        asset->
+      }
+    }`,
     {
       name,
     },
@@ -56,6 +73,13 @@ export interface NavContent {
       url: string;
     }[];
   }[];
+}
+
+export interface LandingPage {
+  _type: "landingPage";
+  title: string;
+  content: PortableTextBlock[];
+  mainImage: { asset: ImageAsset & { alt?: string } };
 }
 
 type Author = {

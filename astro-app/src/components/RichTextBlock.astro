@@ -1,0 +1,33 @@
+---
+import type { Props as $, Block } from "astro-portabletext/types";
+import { Block as DefaultBlock } from "astro-portabletext/components";
+
+export type Props = $<Block>;
+
+const props = Astro.props;
+---
+
+<DefaultBlock {...props}><slot /></DefaultBlock>
+
+<style>
+  h1 {
+    color: var(--color-foreground);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-extrabold);
+  }
+  h2 {
+    color: var(--color-foreground);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-extrabold);
+  }
+  h3 {
+    color: var(--color-foreground);
+    font-size: var(--text-md);
+    font-weight: var(--font-weight-bold);
+  }
+  p {
+    color: var(--color-foreground);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+  }
+</style>
