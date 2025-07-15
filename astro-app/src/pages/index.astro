@@ -1,10 +1,32 @@
 ---
-import { slide } from "astro:transitions";
+import { fade } from "astro:transitions";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getLandingPage } from "@/utils/sanity";
+import { PortableText } from "astro-portabletext";
+import RichTextBlock from "@/components/RichTextBlock.astro";
+
+const landingPage = await getLandingPage("Main");
+const components = {
+  block: RichTextBlock,
+};
 ---
 
 <BaseLayout title="Home">
-  <section transition:animate={slide({ duration: ".5s" })}>
-    <h1>Welcome Will</h1>
+  <section transition:animate={fade({ duration: ".5s" })}>
+    <div
+      class="from-secondary to-primary grid items-center gap-8 bg-gradient-to-br px-20 sm:grid-cols-2"
+    >
+      <div class="text-xl">
+        {
+          landingPage?.content && (
+            <PortableText value={landingPage.content} components={components} />
+          )
+        }
+      </div>
+      <img
+        src={landingPage?.mainImage.asset.url}
+        alt={landingPage?.mainImage.asset.alt || "Main Image"}
+      />
+    </div>
   </section>
 </BaseLayout>
