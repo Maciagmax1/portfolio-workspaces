@@ -20,7 +20,7 @@ export function Navigation({
   menuContentClasses?: string;
 }) {
   return (
-    <NavigationMenu viewport={true} className="hidden sm:block">
+    <NavigationMenu viewport={true} className="hidden md:block">
       <NavigationMenuList className="flex gap-4">
         {navigationContent?.navigationItems?.map((item) =>
           !item.children || item.children.length === 0 ? (

@@ -36,14 +36,14 @@ export function MobileNavigation({
     <Sheet open={open} onOpenChange={setOpen}>
       <DialogTitle className="sr-only">Mobile Navigation</DialogTitle>
       <SheetTrigger asChild>
-        <Button variant="secondary" size="icon" className="sm:hidden">
+        <Button variant="secondary" size="icon" className="md:hidden">
           <MenuIcon />
         </Button>
       </SheetTrigger>
       <SheetContent
         side="left"
         className="h-full w-[calc(100%-4px)]"
-        renderTools={<ThemeToggle className="w-fit sm:hidden" />}
+        renderTools={<ThemeToggle className="w-fit md:hidden" />}
       >
         <nav className="flex w-full flex-col items-start p-4 [&_a]:p-0 [&_button]:p-0 [&_button]:hover:cursor-pointer">
           {navigationContent?.navigationItems?.map((item) => {

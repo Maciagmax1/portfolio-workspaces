@@ -16,6 +16,8 @@ p {
 }
 
 :root {
+  --text-3xl: 2rem;
+  --text-4xl: 2.25rem;
   --background: oklch(0.9856 0.0084 56.3169);
   --foreground: oklch(0.3353 0.0132 2.7676);
   --card: oklch(1 0 0);
