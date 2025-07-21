@@ -4,6 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getLandingPage } from "@/utils/sanity";
 import { PortableText } from "astro-portabletext";
 import RichTextBlock from "@/components/RichTextBlock.astro";
+import { Carousel } from "@/components/Carousel";
 
 const landingPage = await getLandingPage("Main");
 const components = {
@@ -28,6 +29,9 @@ const components = {
         src={landingPage?.mainImage.asset.url}
         alt={landingPage?.mainImage.asset.alt || "Main Image"}
       />
+    </div>
+    <div class="flex w-full justify-center">
+      <Carousel client:load carouselItems={landingPage?.carousel} />
     </div>
   </section>
 </BaseLayout>
