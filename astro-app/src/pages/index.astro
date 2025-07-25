@@ -4,6 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getLandingPage } from "@/utils/sanity";
 import { PortableText } from "astro-portabletext";
 import RichTextBlock from "@/components/RichTextBlock.astro";
+import { Carousel } from "@/components/Carousel";
 
 const landingPage = await getLandingPage("Main");
 const components = {
@@ -14,9 +15,9 @@ const components = {
 <BaseLayout title="Home">
   <section transition:animate={fade({ duration: ".5s" })}>
     <div
-      class="from-secondary to-primary grid items-center gap-8 bg-gradient-to-br px-20 sm:grid-cols-2"
+      class="from-secondary to-primary grid grid-cols-2 items-center gap-8 bg-gradient-to-br px-20"
     >
-      <div class="text-xl">
+      <div class="col-span-full p-8 xl:col-span-1">
         {
           landingPage?.content && (
             <PortableText value={landingPage.content} components={components} />
@@ -24,6 +25,7 @@ const components = {
         }
       </div>
       <img
+        class="hidden self-end xl:block"
         src={landingPage?.mainImage.asset.url}
         alt={landingPage?.mainImage.asset.alt || "Main Image"}
       />

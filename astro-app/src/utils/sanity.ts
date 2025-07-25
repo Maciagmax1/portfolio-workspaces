@@ -80,6 +80,12 @@ export interface LandingPage {
   title: string;
   content: PortableTextBlock[];
   mainImage: { asset: ImageAsset & { alt?: string } };
+  carousel: {
+    label: string;
+    description: string;
+    image: ImageAsset;
+    url: string;
+  }[];
 }
 
 type Author = {

@@ -12,8 +12,11 @@ const props = Astro.props;
 <style>
   h1 {
     color: var(--color-foreground);
-    font-size: var(--text-xl);
+    font-size: var(--text-4xl);
     font-weight: var(--font-weight-extrabold);
+    @media (max-width: 640px) {
+      font-size: var(--text-2xl);
+    }
   }
   h2 {
     color: var(--color-foreground);
@@ -22,12 +25,15 @@ const props = Astro.props;
   }
   h3 {
     color: var(--color-foreground);
-    font-size: var(--text-md);
+    font-size: var(--text-base);
     font-weight: var(--font-weight-bold);
   }
   p {
     color: var(--color-foreground);
-    font-size: var(--text-base);
+    font-size: var(--text-xl);
     font-weight: var(--font-weight-normal);
+    @media (max-width: 640px) {
+      font-size: var(--text-base);
+    }
   }
 </style>
